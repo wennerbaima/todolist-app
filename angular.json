@@ -102,5 +102,8 @@
       }
     }
   },
-  "defaultProject": "todolist-app"
+  "defaultProject": "todolist-app",
+  "cli": {
+    "analytics": false
+  }
 }

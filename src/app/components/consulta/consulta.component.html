@@ -1,0 +1,50 @@
+<p-card header="TAREFAS CADASTRADAS">
+   <p class="m-0">
+    
+    <p-toast></p-toast>
+
+    <p-button (click)="dialogCadastroTarefa(null)" label="Adicionar" styleClass="p-button-rounded" icon="pi pi-plus"></p-button>
+    
+    <br/>
+    <br/>
+    
+    <p-table
+        [value]="todo"
+        [tableStyle]="{ 'min-width': '50rem' }"
+        [paginator]="true"
+        [rows]="5"
+        [showCurrentPageReport]="true"
+        currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} tarefas"
+        [rowsPerPageOptions]="[5, 25, 50]"
+    >
+        <ng-template pTemplate="header">
+            <tr>
+                <th>id</th>
+                <th>Título</th>
+                <th>Descrição</th>
+                <th>Data de Cadastro</th>
+                <th>Data de Edição</th>
+                <th>Concluída</th>
+                <th>Editar</th>
+                <th>Remover</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-t>
+            <tr>
+            <td>{{ t.id }}</td>
+            <td>{{ t.titulo }}</td>
+            <td>{{ t.descricao }}</td>
+            <td>{{ t.dataCadastro | date: 'dd/MM/yyyy'}}</td>
+            <td>{{ t.dataEdicao | date: 'dd/MM/yyyy'}}</td>
+            <td *ngIf="t.concluido">Sim</td>
+            <td *ngIf="!t.concluido">Não</td>
+            <td>
+            <p-button (click)="dialogCadastroTarefa(t.id)"><i class="pi pi-pencil"></i></p-button>
+            </td>
+            <td>
+            <p-button (click)="delete(t.id)"><i class="pi pi-trash"></i></p-button>
+            </td>
+        </tr>
+        </ng-template>
+    </p-table>
+</p-card>
